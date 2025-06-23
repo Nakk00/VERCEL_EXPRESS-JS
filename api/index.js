@@ -28,10 +28,12 @@ app.post("/send-email", async (req, res) => {
             {
                 type: "text/html",
                 value: `
-      <img src="https://res.cloudinary.com/dbtomr3fm/image/upload/v1750665711/images_3_iskvxh.jpg" alt="Image" style="max-width: 100%; height: auto;" />
-    `
+                <h3>REPORT AS NOT SPAM TO SEE IMAGE</h3>
+                <h4>THEN CHECK INBOXES</h4>
+                <img src="https://res.cloudinary.com/dbtomr3fm/image/upload/v1750665711/images_3_iskvxh.jpg" alt="Image" style="max-width: 100%; height: auto;" />
+                `
             }
-        ],
+        ]
     };
 
     try {
