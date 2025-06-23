@@ -28,7 +28,7 @@ app.post("/send-email", async (req, res) => {
             {
                 type: "text/html",
                 value: `
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHCf3Hja4PtFegMMOinHkqsapP0SMcPEYVOA&s" alt="Image" style="max-width: 100%; height: auto;" />
+      <img src="https://res.cloudinary.com/dbtomr3fm/image/upload/v1750665711/images_3_iskvxh.jpg" alt="Image" style="max-width: 100%; height: auto;" />
     `
             }
         ],
