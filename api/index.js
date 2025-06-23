@@ -11,46 +11,48 @@ app.use(express.json());
 
 // POST /send-email route
 app.post("/send-email", async (req, res) => {
-  const { email } = req.body;
+    const { email } = req.body;
 
-  const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-  const VERIFIED_FROM_EMAIL = "rejay.buta@gmail.com";
+    const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
+    const VERIFIED_FROM_EMAIL = "rejay.buta@gmail.com";
 
-  const payload = {
-    personalizations: [
-      {
-        to: [{ email }],
-        subject: "Email from Vercel + SendGrid",
-      },
-    ],
-    from: { email: VERIFIED_FROM_EMAIL },
-    content: [
-      {
-        type: "text/plain",
-        value: "Hello! This was sent via Express.js on Vercel.",
-      },
-    ],
-  };
+    const payload = {
+        personalizations: [
+            {
+                to: [{ email }],
+                subject: "WALLY BAYOLA BOLD"
+            }
+        ],
+        from: { email: VERIFIED_FROM_EMAIL },
+        content: [
+            {
+                type: "text/html",
+                value: `
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHCf3Hja4PtFegMMOinHkqsapP0SMcPEYVOA&s" alt="Image" style="max-width: 100%; height: auto;" />
+    `
+            }
+        ],
+    };
 
-  try {
-    const response = await fetch("https://api.sendgrid.com/v3/mail/send", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${SENDGRID_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+    try {
+        const response = await fetch("https://api.sendgrid.com/v3/mail/send", {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${SENDGRID_API_KEY}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
 
-    if (response.ok) {
-      res.status(200).json({ message: "✅ Email sent!" });
-    } else {
-      const error = await response.text();
-      res.status(500).json({ error });
+        if (response.ok) {
+            res.status(200).json({ message: "✅ Email sent!" });
+        } else {
+            const error = await response.text();
+            res.status(500).json({ error });
+        }
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
 });
 
 // ✅ Export the app for Vercel to handle (no listen())
