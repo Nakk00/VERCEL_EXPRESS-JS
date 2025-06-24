@@ -6,32 +6,31 @@ import cors from "cors";
 
 const app = express();
 
+// Allow CORS
 app.use(cors());
 app.use(express.json());
 
 // POST /send-email route
 app.post("/send-email", async (req, res) => {
-    const { email } = req.body;
+    const { email, subject, htmlContent } = req.body;
 
+    // Required for SendGrid authentication
     const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-    const VERIFIED_FROM_EMAIL = "rejay.buta@gmail.com";
+    const VERIFIED_FROM_EMAIL = "rejay.buta@gmail.com"; // Change if needed
 
+    // Create the email payload
     const payload = {
         personalizations: [
             {
                 to: [{ email }],
-                subject: "WALLY BAYOLA BOLD"
+                subject: subject || "Something Went Wrong from the frontend"
             }
         ],
         from: { email: VERIFIED_FROM_EMAIL },
         content: [
             {
                 type: "text/html",
-                value: `
-                <h3>REPORT AS NOT SPAM TO SEE IMAGE</h3>
-                <h4>THEN CHECK INBOXES</h4>
-                <img src="https://res.cloudinary.com/dbtomr3fm/image/upload/v1750665711/images_3_iskvxh.jpg" alt="Image" style="max-width: 100%; height: auto;" />
-                `
+                value: htmlContent || "<p>There's an Error from the frontend.</p>" // fallback HTML
             }
         ]
     };
@@ -57,5 +56,5 @@ app.post("/send-email", async (req, res) => {
     }
 });
 
-// ✅ Export the app for Vercel to handle (no listen())
+// Export the app for Vercel
 export default app;
