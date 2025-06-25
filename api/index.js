@@ -31,7 +31,7 @@ app.post("/send-email", async (req, res) => {
     });
 
     const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-    const VERIFIED_FROM_EMAIL = "rejay.buta@gmail.com";
+    const VERIFIED_FROM_EMAIL = "lanceadrn.acal@gmail.com";
 
     const payload = {
         personalizations: [
