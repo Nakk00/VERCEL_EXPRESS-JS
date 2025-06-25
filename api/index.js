@@ -31,7 +31,8 @@ app.post("/send-email", async (req, res) => {
     });
 
     const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-    const VERIFIED_DOMAIN = "info@nakkofy-ryu.site";
+    const VERIFIED_DOMAIN = '"Chandria’s La Robe" <info@yourdomain.com>';
+    const REPLY_TO = "support@nakkofy-ryu.site";
 
     const payload = {
         personalizations: [
@@ -41,6 +42,7 @@ app.post("/send-email", async (req, res) => {
             }
         ],
         from: { email: VERIFIED_DOMAIN },
+        reply_to: { email: REPLY_TO, name: "Chandria's Support Team" },
         content: [
             {
                 type: "text/html",
