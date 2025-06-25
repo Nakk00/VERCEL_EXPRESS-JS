@@ -31,7 +31,7 @@ app.post("/send-email", async (req, res) => {
     });
 
     const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-    const VERIFIED_DOMAIN = '"Chandria’s La Robe" <info@nakkofy-ryu.site.com>';
+    const VERIFIED_DOMAIN = '"Chandria’s La Robe" <info@nakkofy-ryu.site>';
     const REPLY_TO = "support@nakkofy-ryu.site";
 
     const payload = {
