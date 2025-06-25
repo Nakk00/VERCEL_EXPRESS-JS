@@ -31,7 +31,7 @@ app.post("/send-email", async (req, res) => {
     });
 
     const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-    const VERIFIED_FROM_EMAIL = "lanceadrn.acal@gmail.com";
+    const VERIFIED_DOMAIN = "info@nakkofy-ryu.site";
 
     const payload = {
         personalizations: [
@@ -40,7 +40,7 @@ app.post("/send-email", async (req, res) => {
                 subject: subject || "Something Went Wrong from the frontend"
             }
         ],
-        from: { email: VERIFIED_FROM_EMAIL },
+        from: { email: VERIFIED_DOMAIN },
         content: [
             {
                 type: "text/html",
